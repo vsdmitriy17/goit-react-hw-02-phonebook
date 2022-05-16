@@ -17,11 +17,8 @@ class App extends Component {
 
     formSubmit = data => {
         this.setState(prevState => {
-            const namesArray = [];
-            prevState.contacts.map(contact => {
-                return namesArray.push(contact.name);
-            });
-            return (namesArray.includes(data.name) ? alert(`${data.name} is already in contacts`) : {...prevState, contacts: [data, ...prevState.contacts]}); 
+            const isNameExist = prevState.contacts.find(contact => contact.name === data.name);
+            return (isNameExist ? alert(`${data.name} is already in contacts`) : {...prevState, contacts: [data, ...prevState.contacts]}); 
         })
     }
 
